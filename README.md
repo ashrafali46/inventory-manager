@@ -9,13 +9,13 @@ Control and monitor a company's inventory using dashboards designed with Vue.js.
 ## Features
 
 - Search for products as inventory.
-- Add, Edit and delete inventory queries.
+- Add, Edit, and delete inventory queries.
 
 ## Technology Stack
 
 - ASP.Net Core 3.1 serving a REST API
 
-- Vue.js 2.6 front end client using dashboards and charts
+- Vue.js 2.6.11 for front end client using dashboards and charts
 
 - PostgreSQL database
 
