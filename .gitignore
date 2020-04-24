@@ -1,10 +1,14 @@
-node_modules/
+# Visual Studio Files
 .vs
-.vscode
+
+# Dotnet Files
 bin/
 obj/
+appsettings.json
+
+# JSON packages
 package-lock.json
-appsetting.json
+
 
 # From Vue/cli gitignore
 .DS_Store
