@@ -30,6 +30,7 @@ namespace Api
 
             services.AddDbContext<ApplicationDbContext>(
                 options => {
+                options.EnableDetailedErrors();
                 options.UseNpgsql(Configuration.GetConnectionString("placeholder"));
             });
         }
