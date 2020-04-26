@@ -28,11 +28,7 @@ namespace Api
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationDbContext>(
-                options => {
-                options.EnableDetailedErrors();
-                options.UseNpgsql(Configuration.GetConnectionString("placeholder"));
-            });
+            services.AddDbContext<ApplicationDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
