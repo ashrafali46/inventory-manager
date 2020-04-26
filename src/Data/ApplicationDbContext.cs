@@ -28,7 +28,7 @@ namespace Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableDetailedErrors();
-            optionsBuilder.UseNpgsql(_config.GetConnectionString("placeholder"));
+            optionsBuilder.UseNpgsql(_config.GetConnectionString("DefaultConnection"));
         }
     }
 }
