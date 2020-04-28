@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Services.Product;
 
 namespace Api
 {
@@ -29,6 +30,8 @@ namespace Api
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>();
+
+            services.AddTransient<IProductService, ProductService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
