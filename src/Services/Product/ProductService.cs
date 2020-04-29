@@ -77,7 +77,6 @@ namespace Services.Product
                     Time = DateTime.UtcNow,
                     Message = "Archived product",
                     IsSuccess = true
-
                 };
             }
             catch (Exception ex)
