@@ -4,6 +4,7 @@ using Services.Product;
 
 namespace Api.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -21,17 +22,19 @@ namespace Api.Controllers
         {
             _logger.LogInformation("Getting all products");
 
-            _productService.GetAllProducts();
-            return Ok();
+            var products = _productService.GetAllProducts();
+
+            return Ok(products);
         }
 
         [HttpGet("id")]
-        public ActionResult GetProduct()
+        public ActionResult GetProduct(int id)
         {
             _logger.LogInformation("Getting a single product with id of: ${id}");
 
-            return Ok();
+            var product = _productService.GetProductById(id);
 
+            return Ok(product);
         }
     }
 }
