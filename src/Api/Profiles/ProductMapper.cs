@@ -1,10 +1,14 @@
-﻿
-using Api.ViewModels;
+﻿using Api.ViewModels;
 
 namespace Api.Profiles
 {
     public class ProductMapper
     {
+        ///<summary>
+        /// Maps a Product data model to a Product VM
+        ///</summary>
+        ///<params name="product"></params>
+        ///<returns></returns>
         public static ProductModel SerializedProductModel(Data.Models.Product product)
         {
             return new ProductModel
