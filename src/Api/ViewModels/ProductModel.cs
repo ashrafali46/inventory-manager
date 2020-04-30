@@ -1,12 +1,11 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Api.ViewModels
 {
     /// <summary>
     /// Product entity Dto
     /// </summary>
-    public class Product
+    public class ProductModel
     {
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
