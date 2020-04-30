@@ -27,10 +27,10 @@ namespace Api.Controllers
             return Ok(products);
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public ActionResult GetProduct(int id)
         {
-            _logger.LogInformation("Getting a single product with id of: ${id}");
+            _logger.LogInformation($"Getting a single product with id of: {id}");
 
             var product = _productService.GetProductById(id);
 
