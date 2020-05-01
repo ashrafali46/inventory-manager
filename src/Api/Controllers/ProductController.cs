@@ -1,3 +1,5 @@
+using System.Linq;
+using Api.Profiles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Product;
@@ -24,7 +26,9 @@ namespace Api.Controllers
 
             var products = _productService.GetAllProducts();
 
-            return Ok(products);
+            var productViewModels = products.Select(ProductMapper.SerializedProductModel);
+
+            return Ok(productViewModels);
         }
 
         [HttpGet("{id}")]
