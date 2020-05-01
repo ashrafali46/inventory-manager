@@ -14,13 +14,13 @@ namespace Api.Profiles
             return new ProductModel
             {
                 Id = product.Id,
-                    CreatedOn = product.CreatedOn,
-                    UpdatedOn = product.UpdatedOn,
-                    Name = product.Name,
-                    Description = product.Description,
-                    Price = product.Price,
-                    IsTaxable = product.IsTaxable,
-                    IsArchived = product.IsArchived
+                CreatedOn = product.CreatedOn,
+                UpdatedOn = product.UpdatedOn,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                IsTaxable = product.IsTaxable,
+                IsArchived = product.IsArchived
             };
         }
 
@@ -34,13 +34,13 @@ namespace Api.Profiles
             return new Data.Models.Product
             {
                 Id = product.Id,
-                    CreatedOn = product.CreatedOn,
-                    UpdatedOn = product.UpdatedOn,
-                    Name = product.Name,
-                    Description = product.Description,
-                    Price = product.Price,
-                    IsTaxable = product.IsTaxable,
-                    IsArchived = product.IsArchived
+                CreatedOn = product.CreatedOn,
+                UpdatedOn = product.UpdatedOn,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                IsTaxable = product.IsTaxable,
+                IsArchived = product.IsArchived
             };
         }
     }
