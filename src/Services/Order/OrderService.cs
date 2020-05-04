@@ -10,7 +10,7 @@ namespace Services.Order
             throw new System.NotImplementedException();
         }
 
-        public List<SalesOrder> GetAOrders()
+        public List<SalesOrder> GetAllOrders()
         {
             throw new System.NotImplementedException();
         }

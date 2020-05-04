@@ -5,7 +5,7 @@ namespace Services.Order
 {
     public interface IOrderService
     {
-       List<SalesOrder> GetAOrders();
+       List<SalesOrder> GetAllOrders();
        ServiceResponse<bool> GenerateInvoiceForOrder(SalesOrder order);
        ServiceResponse<bool> MarkComplete(int id); //mark fulfilled
     }
