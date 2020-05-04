@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using Data.Models;
 
 namespace Services.Inventory
 {
     public interface IInventoryService
     {
-         List<Data.Models.ProductInventory> GetCurrentInventory();
-         ServiceResponse<Data.Models.ProductInventory> UpdateUnitsAvailable(int id, int adjusted);
-         Data.Models.ProductInventory GetProductId(int productId);
+         List<ProductInventory> GetCurrentInventory();
+         ServiceResponse<ProductInventory> UpdateUnitsAvailable(int id, int adjusted);
+         ProductInventory GetProductId(int productId);
          void CreateSnapshot();
-         List<Data.Models.ProductInventorySnapshot> GetSnapshotHistory();   
+         List<ProductInventorySnapshot> GetSnapshotHistory();   
     }
 }
