@@ -14,6 +14,7 @@ namespace Services.Product
         {
             _dbContext = dbContext;
         }
+        
         public List<Data.Models.Product> GetAllProducts()
         {
             return _dbContext.Products.ToList();
