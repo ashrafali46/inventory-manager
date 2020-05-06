@@ -45,7 +45,7 @@ namespace Services.Product
                 {
                     Data = product,
                     Time = DateTime.UtcNow,
-                    Message = "Saved new PRoduct",
+                    Message = "Saved new Product",
                     IsSuccess = true
                 };
 
@@ -56,7 +56,7 @@ namespace Services.Product
                 {
                     Data = product,
                     Time = DateTime.UtcNow,
-                    Message = $"Could not save new Product, see the following: {ex}",
+                    Message = $"Could not save new the Product to the database, see the following error: {ex}",
                     IsSuccess = false
                 };
             }
