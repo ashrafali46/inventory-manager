@@ -60,7 +60,6 @@ namespace Services.Product
                     IsSuccess = false
                 };
             }
-
         }
 
         public ServiceResponse<Data.Models.Product> ArchiveProduct(int id)
