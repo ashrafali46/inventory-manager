@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.Inventory
 {
@@ -20,7 +22,10 @@ namespace Services.Inventory
 
         public List<ProductInventory> GetCurrentInventory()
         {
-            throw new System.NotImplementedException();
+            return _dbContext.ProductInventories
+                .Include(pi => pi.Product)
+                .Where(pi => !pi.Product.IsArchived)
+                .ToList();
         }
 
         public ProductInventory GetProductId(int productId)
