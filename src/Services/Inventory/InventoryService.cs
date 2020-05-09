@@ -4,16 +4,19 @@ using System.Linq;
 using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Services.Inventory
 {
     public class InventoryService : IInventoryService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly ILogger<InventoryService> _logger;
 
-        public InventoryService(ApplicationDbContext dbContext)
+        public InventoryService(ApplicationDbContext dbContext, ILogger<InventoryService> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public void CreateSnapshot()
@@ -48,6 +51,15 @@ namespace Services.Inventory
                     .First(inv => inv.Product.Id == id);
 
                 inventory.QuantityOnHand += adjusted;
+
+                try
+                {
+                    CreateSnapshot();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"There was an error creating inventory snapshot, see the following error: {ex}");
+                }
 
                 _dbContext.SaveChanges();
 
