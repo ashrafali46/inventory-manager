@@ -19,11 +19,6 @@ namespace Services.Inventory
             _logger = logger;
         }
 
-        public void CreateSnapshot()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public List<ProductInventory> GetCurrentInventory()
         {
             return _dbContext.ProductInventories
@@ -34,12 +29,14 @@ namespace Services.Inventory
 
         public ProductInventory GetProductId(int productId)
         {
-            throw new System.NotImplementedException();
+            return _dbContext.ProductInventories
+                .Include(pi => pi.Product)
+                .FirstOrDefault(pi => pi.Product.Id == productId);
         }
 
         public List<ProductInventorySnapshot> GetSnapshotHistory()
         {
-            throw new System.NotImplementedException();
+            throw new Exception();
         }
 
         public ServiceResponse<ProductInventory> UpdateUnitsAvailable(int id, int adjusted)
@@ -54,7 +51,7 @@ namespace Services.Inventory
 
                 try
                 {
-                    CreateSnapshot();
+                    CreateSnapshot(inventory);
                 }
                 catch (Exception ex)
                 {
@@ -63,7 +60,7 @@ namespace Services.Inventory
 
                 _dbContext.SaveChanges();
 
-                return new ServiceResponse<ProductInventory> 
+                return new ServiceResponse<ProductInventory>
                 {
                     IsSuccess = true,
                     Data = inventory,
@@ -73,7 +70,7 @@ namespace Services.Inventory
             }
             catch (Exception ex)
             {
-                return new ServiceResponse<ProductInventory> 
+                return new ServiceResponse<ProductInventory>
                 {
                     IsSuccess = false,
                     Data = null,
@@ -81,6 +78,18 @@ namespace Services.Inventory
                     Time = DateTime.UtcNow
                 };
             }
+        }
+
+        private void CreateSnapshot(ProductInventory inventory)
+        {
+            var snapshot = new ProductInventorySnapshot
+            {
+                SnapshotTime = DateTime.UtcNow,
+                Product = inventory.Product,
+                QuantityOnHand = inventory.QuantityOnHand
+            };
+
+            _dbContext.Add(snapshot);
         }
     }
 }
