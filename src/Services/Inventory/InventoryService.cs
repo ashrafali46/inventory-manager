@@ -36,7 +36,12 @@ namespace Services.Inventory
 
         public List<ProductInventorySnapshot> GetSnapshotHistory()
         {
-            throw new Exception();
+            var earliest = DateTime.UtcNow - TimeSpan.FromHours(6);
+
+            return _dbContext.ProductInventorySnapshots
+                .Include(snap => snap.Product)
+                .Where(snap => snap.SnapshotTime > earliest && !snap.Product.IsArchived)
+                .ToList();
         }
 
         public ServiceResponse<ProductInventory> UpdateUnitsAvailable(int id, int adjusted)
