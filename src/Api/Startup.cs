@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Services.Customer;
+using Services.Inventory;
 using Services.Order;
 using Services.Product;
 
@@ -36,6 +37,7 @@ namespace Api
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IInventoryService, InventoryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
