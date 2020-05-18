@@ -26,8 +26,10 @@ namespace Services.Order
             _inventoryService = inventoryService;
         }
 
-        public ServiceResponse<bool> GenerateInvoiceForOrder(SalesOrder order)
+        public ServiceResponse<bool> GenerateOpenOrder(SalesOrder order)
         {
+            _logger.LogInformation("Generating new order");
+
             foreach (var item in order.SalesOrderItems)
             {
                 item.Product = _productService.GetProductById(item.Product.Id);
@@ -72,9 +74,40 @@ namespace Services.Order
                 .ToList();
         }
 
+        /// <summary>
+        /// Marks an open SalesOrder as paid
+        /// </summary>
         public ServiceResponse<bool> MarkComplete(int id)
         {
-            throw new System.NotImplementedException();
+            var order = _dbContext.SalesOrders.Find(id);
+            order.UpdatedOn = DateTime.UtcNow;
+            order.IsPaid = true;
+
+            try
+            {
+                _dbContext.SalesOrders.Update(order);
+                _dbContext.SaveChanges();
+
+                return new ServiceResponse<bool>
+                {
+                    IsSuccess = true,
+                    Data = true,
+                    Message = $"Order {order.Id} was completed and paid",
+                    Time = DateTime.UtcNow
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred with the following: {ex}");
+
+                return new ServiceResponse<bool>
+                {
+                    IsSuccess = false,
+                    Data = false,
+                    Message = $"An error occurred with the following: {ex}", // e.StackTrace
+                    Time = DateTime.UtcNow
+                };
+            }
         }
     }
 }
