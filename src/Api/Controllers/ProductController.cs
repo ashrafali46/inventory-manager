@@ -31,7 +31,7 @@ namespace Api.Controllers
             return Ok(productViewModels);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/api/product/{id}")]
         public ActionResult GetProduct(int id)
         {
             _logger.LogInformation($"Getting a single product with id of: {id}");
@@ -39,6 +39,16 @@ namespace Api.Controllers
             var product = _productService.GetProductById(id);
 
             return Ok(product);
+        }
+
+        [HttpPatch("/api/product/{id}")]
+        public ActionResult ArchiveProduct(int id)
+        {
+            _logger.LogInformation($"Archiving product ID#: {id}");
+
+            var archiveResult = _productService.ArchiveProduct(id);
+
+            return Ok(archiveResult);
         }
     }
 }
