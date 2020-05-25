@@ -5,7 +5,7 @@ namespace Api.Profiles
     public class ProductMapper
     {
         ///<summary>
-        /// Maps a Product data model to a Product VM
+        /// Maps a Product data model to a Product View Model
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
@@ -25,7 +25,7 @@ namespace Api.Profiles
         }
 
         ///<summary>
-        /// Maps a Product VM to a Product data model reverse map
+        /// Maps a Product View Model to a Product data model reverse map
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
