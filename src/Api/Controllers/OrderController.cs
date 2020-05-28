@@ -20,8 +20,10 @@ namespace Api.Controllers
             _logger = logger;
         }
 
-        public ActionResult GenerateNewOrder(InvoiceModel invoice)
+        [HttpPost("api/invoice")]
+        public ActionResult GenerateNewOrder([FromBody] InvoiceModel invoice)
         {
+            _logger.LogInformaion("Getting an order");
             return Ok();
         }
     }
