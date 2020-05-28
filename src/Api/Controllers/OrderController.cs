@@ -23,7 +23,7 @@ namespace Api.Controllers
         [HttpPost("api/invoice")]
         public ActionResult GenerateNewOrder([FromBody] InvoiceModel invoice)
         {
-            _logger.LogInformaion("Getting an order");
+            _logger.LogInformation("Getting an order");
             return Ok();
         }
     }
