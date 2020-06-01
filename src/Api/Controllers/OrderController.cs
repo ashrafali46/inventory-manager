@@ -24,6 +24,11 @@ namespace Api.Controllers
         public ActionResult GenerateNewOrder([FromBody] InvoiceModel invoice)
         {
             _logger.LogInformation("Getting an order");
+
+            var order = OrderMapper.SerializedInvoiceOrder(invoice);
+
+            order.Customer = _customerService.GetById(invoice.CustomerId);
+
             return Ok();
         }
     }
