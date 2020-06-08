@@ -1,3 +1,4 @@
+using Api.Profiles;
 using Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
