@@ -14,7 +14,6 @@ namespace Api.Profiles
             {
 
             };
-
         }
 
         public static SalesOrder SerializedInvoiceOrder(InvoiceModel invoice)
