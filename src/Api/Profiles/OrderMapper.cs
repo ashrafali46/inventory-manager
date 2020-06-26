@@ -33,9 +33,22 @@ namespace Api.Profiles
             };
         }
 
-        public static List<OrderModel> SerializeOrderToViewModel()
+        public static List<OrderModel> SerializeOrderToViewModel(IEnumerable<SalesOrder> orders)
         {
-            throw new Exception();
+            return orders.Select(order => new OrderModel 
+            {
+                Id = order.Id,
+                CreatedOn = order.CreatedOn,
+                UpdatedOn = order.UpdatedOn,
+                SalesOrderItems = SerializeSalesOrderItems(order.SalesOrderItems),
+                Customer = CustomerMapper.SerializesCustomer(order.Customer),
+                IsPaid = order.IsPaid
+            });
+        }
+
+        public static List<SalesOrderItem> SerializeSalesOrderItem(IEnumerable<SalesOrderItem> orderItems)
+        {
+            
         }
     }
 }
