@@ -6,34 +6,32 @@ using Data.Models;
 
 namespace Api.Profiles
 {
-    public class OrderMapper
+    public static class OrderMapper
     {
-        public static InvoiceModel SerializedInvoiceOrder(SalesOrder invoice)
-        {
-            return new InvoiceModel
-            {
-
-            };
-        }
-
-        public static SalesOrder SerializedInvoiceOrder(InvoiceModel invoice)
+        ///<summary>
+        /// Maps an InvoiceModel (view model) to a SalesOrder (data) model
+        ///</summary>
+        ///<param name="invoice"></param>
+        ///<returns></returns>
+        
+        public static SalesOrder SerializeInvoiceOrder(InvoiceModel invoice)
         {
             var salesOrderItems = invoice.LineItems.Select(item => new SalesOrderItem
             {
                 Id = item.Id,
-                    Quantity = item.Quantity,
-                    Product = ProductMapper.SerializedProductModel(item.Product)
+                Quantity = item.Quantity,
+                Product = ProductMapper.SerializeProductModel(item.Product)
             }).ToList();
 
             return new SalesOrder
             {
                 SalesOrderItems = salesOrderItems,
-                    UpdatedOn = DateTime.UtcNow,
-                    CreatedOn = DateTime.UtcNow
+                UpdatedOn = DateTime.UtcNow,
+                CreatedOn = DateTime.UtcNow
             };
         }
 
-        public static List<OrderModel> SerializeOrderToViewModel(IEnumerable<SalesOrder> orders)
+        public static List<OrderModel> SerializeOrdersToViewModels(IEnumerable<Data.Models.SalesOrder> orders)
         {
             return orders.Select(order => new OrderModel 
             {
@@ -41,14 +39,19 @@ namespace Api.Profiles
                 CreatedOn = order.CreatedOn,
                 UpdatedOn = order.UpdatedOn,
                 SalesOrderItems = SerializeSalesOrderItems(order.SalesOrderItems),
-                Customer = CustomerMapper.SerializesCustomer(order.Customer),
+                Customer = CustomerMapper.SerializeCustomer(order.Customer),
                 IsPaid = order.IsPaid
-            });
+            }).ToList();
         }
 
-        public static List<SalesOrderItem> SerializeSalesOrderItem(IEnumerable<SalesOrderItem> orderItems)
+        public static List<SalesOrderItemModel> SerializeSalesOrderItems(IEnumerable<Data.Models.SalesOrderItem> orderItems)
         {
-            
+            return orderItems.Select(item => new SalesOrderItemModel 
+            {
+                Id = item.Id,
+                Quantity = item.Quantity,
+                Product = ProductMapper.SerializeProductModel(item.Product)
+            }).ToList();
         }
     }
 }
