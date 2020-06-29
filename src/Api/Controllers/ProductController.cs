@@ -26,7 +26,7 @@ namespace Api.Controllers
 
             var products = _productService.GetAllProducts();
 
-            var productViewModels = products.Select(ProductMapper.SerializedProductModel);
+            var productViewModels = products.Select(ProductMapper.SerializeProductModel);
 
             return Ok(productViewModels);
         }
