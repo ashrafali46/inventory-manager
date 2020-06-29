@@ -26,7 +26,7 @@ namespace Api.Controllers
         {
             _logger.LogInformation("Getting an order");
 
-            var order = OrderMapper.SerializedInvoiceOrder(invoice);
+            var order = OrderMapper.SerializeInvoiceOrder(invoice);
 
             order.Customer = _customerService.GetById(invoice.CustomerId);
 
