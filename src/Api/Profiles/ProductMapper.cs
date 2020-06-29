@@ -9,7 +9,7 @@ namespace Api.Profiles
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
-        public static ProductModel SerializedProductModel(Data.Models.Product product)
+        public static ProductModel SerializeProductModel(Data.Models.Product product)
         {
             return new ProductModel
             {
@@ -29,7 +29,7 @@ namespace Api.Profiles
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
-        public static Data.Models.Product SerializedProductModel(ProductModel product)
+        public static Data.Models.Product SerializeProductModel(ProductModel product)
         {
             return new Data.Models.Product
             {
