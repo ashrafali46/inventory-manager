@@ -1,4 +1,4 @@
-using Api.Profiles;
+using Api.Serialization;
 using Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,6 +29,8 @@ namespace Api.Controllers
             var order = OrderMapper.SerializeInvoiceOrder(invoice);
 
             order.Customer = _customerService.GetById(invoice.CustomerId);
+
+            _orderService.GenerateOpenOrder(order);
 
             return Ok();
         }
