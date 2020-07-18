@@ -1,5 +1,5 @@
 using System.Linq;
-using Api.Profiles;
+using Api.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Product;
