@@ -1,6 +1,7 @@
 ﻿using Api.ViewModels;
+using Data.Models;
 
-namespace Api.Profiles
+namespace Api.Serialization
 {
     public class ProductMapper
     {
@@ -9,7 +10,7 @@ namespace Api.Profiles
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
-        public static ProductModel SerializeProductModel(Data.Models.Product product)
+        public static ProductModel SerializeProductModel(Product product)
         {
             return new ProductModel
             {
@@ -29,9 +30,9 @@ namespace Api.Profiles
         ///</summary>
         ///<params name="product"></params>
         ///<returns></returns>
-        public static Data.Models.Product SerializeProductModel(ProductModel product)
+        public static Product SerializeProductModel(ProductModel product)
         {
-            return new Data.Models.Product
+            return new Product
             {
                 Id = product.Id,
                 CreatedOn = product.CreatedOn,

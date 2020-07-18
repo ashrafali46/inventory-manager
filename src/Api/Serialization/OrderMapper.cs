@@ -4,7 +4,7 @@ using System.Linq;
 using Api.ViewModels;
 using Data.Models;
 
-namespace Api.Profiles
+namespace Api.Serialization
 {
     public static class OrderMapper
     {
@@ -31,7 +31,7 @@ namespace Api.Profiles
             };
         }
 
-        public static List<OrderModel> SerializeOrdersToViewModels(IEnumerable<Data.Models.SalesOrder> orders)
+        public static List<OrderModel> SerializeOrdersToViewModels(IEnumerable<SalesOrder> orders)
         {
             return orders.Select(order => new OrderModel 
             {
@@ -44,9 +44,9 @@ namespace Api.Profiles
             }).ToList();
         }
 
-        public static List<SalesOrderItemModel> SerializeSalesOrderItems(IEnumerable<Data.Models.SalesOrderItem> orderItems)
+        private static List<SalesOrderItemModel> SerializeSalesOrderItems(IEnumerable<SalesOrderItem> orderItems)
         {
-            return orderItems.Select(item => new SalesOrderItemModel 
+            return orderItems.Select(item => new SalesOrderItemModel
             {
                 Id = item.Id,
                 Quantity = item.Quantity,
