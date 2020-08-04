@@ -1,5 +1,6 @@
 using System.Linq;
 using Api.Serialization;
+using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Product;
@@ -49,6 +50,29 @@ namespace Api.Controllers
             var archiveResult = _productService.ArchiveProduct(id);
 
             return Ok(archiveResult);
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct([FromBody] Product product)
+        {
+            _logger.LogInformation($"Attempting to create a new product object...");
+            
+            product = new Product
+            {
+                Id = product.Id,
+                Description = product.Description,
+                Name = product.Name,
+                CreatedOn = product.CreatedOn,
+                IsArchived = false,
+                IsTaxable = false,
+                Price = product.Price
+            };
+
+            _productService.CreateProduct(product);
+            
+            _logger.LogInformation($"Successfully created object: { product }");
+
+            return CreatedAtRoute("CreateProduct", new Product());
         }
     }
 }
