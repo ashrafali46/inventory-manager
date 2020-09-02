@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Services.Customer;
@@ -26,7 +28,10 @@ namespace Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration
+        {
+            get;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -52,6 +57,12 @@ namespace Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = "/blazor", FileProvider = new PhysicalFileProvider
+                    (Path.Combine(Directory.GetCurrentDirectory(),"../BlazorApp/wwwroot"))
+             });
 
             app.UseEndpoints(endpoints =>
             {
