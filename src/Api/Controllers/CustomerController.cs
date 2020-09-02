@@ -29,7 +29,7 @@ namespace Api.Controllers
         public ActionResult GetCustomer(int id)
         {
             _logger.LogInformation($"Getting a single customer of id: {id}");
-`    
+            
             return Ok();
         }
     }
