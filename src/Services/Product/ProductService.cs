@@ -57,7 +57,7 @@ namespace Services.Product
                 {
                     Data = product,
                     Time = DateTime.UtcNow,
-                    Message = $"Could not save new the Product to the database, see the following error: {ex}",
+                    Message = $"Could not save the new Product to the database, see the following error: {ex}",
                     IsSuccess = false
                 };
             }
@@ -75,7 +75,7 @@ namespace Services.Product
                 {
                     Data = product,
                     Time = DateTime.UtcNow,
-                    Message = "Archived product",
+                    Message = $"Successfully Archived Product with id: {id}",
                     IsSuccess = true
                 };
             }
