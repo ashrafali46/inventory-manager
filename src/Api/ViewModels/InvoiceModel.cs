@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Api.ViewModels
 {
+    /// <summary>
+    /// A View Model for SalesOrderItemModel
+    /// </summary>
     public class InvoiceModel
     {
         public int Id { get; set; }

@@ -3,7 +3,7 @@ using Data.Models;
 
 namespace Api.Serialization
 {
-    public class ProductMapper
+    public static class ProductMapper
     {
         ///<summary>
         /// Maps a Product data model to a Product View Model

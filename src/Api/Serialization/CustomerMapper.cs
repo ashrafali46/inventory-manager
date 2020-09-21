@@ -3,7 +3,7 @@ using Data.Models;
 
 namespace Api.Serialization
 {
-    public class CustomerMapper
+    public static class CustomerMapper
     {
         public static CustomerModel SerializeCustomer(Customer customer)
         {
