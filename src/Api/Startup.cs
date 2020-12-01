@@ -37,7 +37,11 @@ namespace Api
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.EnableDetailedErrors();
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICustomerService, CustomerService>();
@@ -58,11 +62,7 @@ namespace Api
 
             app.UseAuthorization();
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                RequestPath = "/blazor", FileProvider = new PhysicalFileProvider
-                    (Path.Combine(Directory.GetCurrentDirectory(),"../BlazorApp/wwwroot"))
-             });
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
