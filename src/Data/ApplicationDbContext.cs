@@ -8,8 +8,6 @@ namespace Data
     public class ApplicationDbContext : IdentityDbContext
     {
         private readonly IConfiguration _config;
-        public ApplicationDbContext()
-        { }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration config) : base(options)
         {
@@ -29,10 +27,10 @@ namespace Data
             base.OnModelCreating(builder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableDetailedErrors();
-            optionsBuilder.UseNpgsql(_config.GetConnectionString("DefaultConnection"));
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.EnableDetailedErrors();
+        //      optionsBuilder.UseNpgsql(_config.GetConnectionString("DefaultConnection"));
+        // }
     }
 }
