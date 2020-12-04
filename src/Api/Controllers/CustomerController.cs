@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Api.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Customer;
 
@@ -18,11 +20,21 @@ namespace Api.Controllers
         [HttpGet]
         public ActionResult GetCustomers()
         {
-            _logger.LogInformation("");
+            _logger.LogInformation("Fetching all customers");
 
             var customers = _customerService.GetAllCustomers();
 
-            return Ok(customers);
+            var customerModels = customers.Select(customer => new CustomerModel {
+                Id = customer.Id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                CreatedOn = customer.CreatedOn,
+                UpdatedOn = customer.UpdatedOn
+            })
+            .OrderByDescending(customer => customer.CreatedOn)
+            .ToList();
+
+            return Ok(customerModels);
         }
 
         [HttpGet("id")]
