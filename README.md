@@ -4,13 +4,13 @@
 
 ## Scope
 
-Control and monitor a company's inventory using dashboards designed with Vue.js. A web API serves as the back end request via .Net Core.
+Control and monitor a company's inventory using dashboards designed with Vue.js. A web API using ASP.Net Core serves as the back-end requests to the client.
 
 ## Features
 
 - Add, edit, and delete inventory queries.
 - Search for products as inventory.
-- Create invoices, bill of ladings for customers.
+- Create invoices or bill of ladings for customers.
 - Integrated testing with Xunit for the back end Api
 - End to end (E2E) testing using Jasmin for the front end client
 
